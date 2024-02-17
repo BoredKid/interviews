@@ -2,8 +2,8 @@
 
 // index.js
 const express = require('express');
-const fs = require("fs");
 const { getDbData, getDbDataById } = require('./utils/dbFunc');
+const { nestZones, filterZones } = require('./utils/func');
 const app = express();
 
 const port = 8081;
@@ -53,6 +53,16 @@ app.get('/candidates/:id', (req, res) => {
     const candidateId = req.params.id;
     try {
         return res.json(getDbDataById("candidates", candidateId))
+    } catch (error) {
+        return res.status(400).json({ error: error.toString() })
+    }
+})
+
+app.get('/zones', (req, res) => {
+    let isMobility = req.query.isMobility === "true" ? true : false;
+    let isResidency = req.query.isResidency === "true" ? true : false;
+    try {
+        return res.json(filterZones(nestZones(getDbData("zones")), isMobility, isResidency))
     } catch (error) {
         return res.status(400).json({ error: error.toString() })
     }

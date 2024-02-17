@@ -9,3 +9,7 @@ export const getCandidates = () => {
 export const getCandidateById = (id) => {
   return axios.get(`${API_URL}/candidates/${id}`);
 };
+
+export const getZones = (isMobility, isResidency) => {
+  return axios.get(`${API_URL}/zones?isMobility=${isMobility}&isResidency=${isResidency}`);
+};
