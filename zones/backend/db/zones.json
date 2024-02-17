@@ -1,0 +1,16 @@
+[
+    {
+        "id":"355",
+        "name":"Belgium",
+        "isResidency":false,
+        "isMobility":true,
+        "parent": null
+    },
+    {
+        "id":"356",
+        "name":"Bruxelles",
+        "isResidency": true,
+        "isMobility":true,
+        "parent": "355"
+    }
+]
