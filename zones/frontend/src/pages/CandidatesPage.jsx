@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableBody, TableRow, TableCell } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { getCandidates } from '../utils/api';
 
@@ -14,27 +14,34 @@ const Candidates = () => {
   }
 
   return (
-    <Table>
-      <TableBody>
+    <Table striped celled style={{ marginTop: 0, borderRadius: 0 }}>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell style={{ textDecoration: 'underline' }}>Firstname</Table.HeaderCell>
+          <Table.HeaderCell style={{ textDecoration: 'underline' }}>Lastname</Table.HeaderCell>
+          <Table.HeaderCell style={{ textDecoration: 'underline' }}>Edit Candidate</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
         {candidates.map((candidate) => (
           <CandidateRow key={candidate.id} candidate={candidate} />
         ))}
-      </TableBody>
+      </Table.Body>
     </Table>
   );
 };
 
 const CandidateRow = ({ candidate }) => {
   return (
-    <TableRow>
-      <TableCell>{candidate.firstname}</TableCell>
-      <TableCell>{candidate.lastname}</TableCell>
-      <TableCell>
+    <Table.Row>
+      <Table.Cell>{candidate.firstname}</Table.Cell>
+      <Table.Cell>{candidate.lastname}</Table.Cell>
+      <Table.Cell>
         <Link to={`/candidate/${candidate.id}`}>
           <p>Edit -{'>'} </p>
         </Link>
-      </TableCell>
-    </TableRow>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
