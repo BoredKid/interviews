@@ -21,18 +21,20 @@ const Zones = () => {
   }
 
   return (
-    <Table striped celled style={{ marginTop: 0, borderRadius: 0 }}>
-      <ZoneHeaders />
-      <Table.Body>
-        {zones.map((zone) => (
-          <ZoneRow
-            zone={zone}
-            key={zone.id}
-            updateZoneValue={(id, field, value) => updateZone(id, { [field]: value })}
-          />
-        ))}
-      </Table.Body>
-    </Table>
+    <>
+      <Table striped celled style={{ marginTop: 0, borderRadius: 0 }}>
+        <ZoneHeaders />
+        <Table.Body>
+          {zones.map((zone) => (
+            <ZoneRow
+              zone={zone}
+              key={zone.id}
+              updateZoneValue={(id, field, value) => updateZone(id, { [field]: value })}
+            />
+          ))}
+        </Table.Body>
+      </Table>
+    </>
   );
 };
 
