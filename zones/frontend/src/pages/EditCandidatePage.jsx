@@ -22,8 +22,10 @@ const EditCandidate = () => {
     <Container>
       <Grid>
         <Grid.Row>
-          <Grid.Column>{candidate.firstname}</Grid.Column>
-          <Grid.Column>{candidate.lastname}</Grid.Column>
+          <p>Firstname : {candidate.firstname}</p>
+        </Grid.Row>
+        <Grid.Row>
+          <p>Lastname : {candidate.lastname}</p>
         </Grid.Row>
       </Grid>
     </Container>

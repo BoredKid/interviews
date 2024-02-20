@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Checkbox, Table } from 'semantic-ui-react';
 
-import { getZones } from '../utils/api';
+import { getZones, editZone } from '../utils/api';
 
 const Zones = () => {
   const [zones, setZones] = useState(null);
+
+  const updateZone = (id, data) => {
+    editZone(id, data)
+      .then((res) => setZones(unfoldZone(res.data, 0, null)))
+      .catch(() => setZones(null));
+  };
+
   useEffect(() => {
     getZones(false, false).then((res) => setZones(unfoldZone(res.data, 0, null)));
   }, []);
@@ -21,7 +28,7 @@ const Zones = () => {
           <ZoneRow
             zone={zone}
             key={zone.id}
-            //updateZoneValue={(id, field, value) => dispatch(updateZone(id, { [field]: value }))}
+            updateZoneValue={(id, field, value) => updateZone(id, { [field]: value })}
           />
         ))}
       </Table.Body>
@@ -61,7 +68,7 @@ const CheckboxCell = ({ fieldKey, zone, update }) => {
   );
 };
 
-const ZoneRow = ({ zone }) => {
+const ZoneRow = ({ zone, updateZoneValue }) => {
   return (
     <Table.Row>
       <Table.Cell
@@ -76,12 +83,12 @@ const ZoneRow = ({ zone }) => {
       <CheckboxCell
         fieldKey="isMobility"
         zone={zone}
-        //update={(field, value) => updateZoneValue(zone.id, field, value)}
+        update={(field, value) => updateZoneValue(zone.id, field, value)}
       />
       <CheckboxCell
         fieldKey="isResidency"
         zone={zone}
-        //update={(field, value) => updateZoneValue(zone.id, field, value)}
+        update={(field, value) => updateZoneValue(zone.id, field, value)}
       />
     </Table.Row>
   );

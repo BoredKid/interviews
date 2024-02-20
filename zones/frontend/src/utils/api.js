@@ -13,3 +13,7 @@ export const getCandidateById = (id) => {
 export const getZones = (isMobility, isResidency) => {
   return axios.get(`${API_URL}/zones?isMobility=${isMobility}&isResidency=${isResidency}`);
 };
+
+export const editZone = (id, data) => {
+  return axios.put(`${API_URL}/zones/${id}`, data);
+};

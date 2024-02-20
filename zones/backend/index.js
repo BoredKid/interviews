@@ -2,7 +2,7 @@
 
 // index.js
 const express = require('express');
-const { getDbData, getDbDataById } = require('./utils/dbFunc');
+const { getDbData, getDbDataById, editDBDataById } = require('./utils/dbFunc');
 const { nestZones, filterZones } = require('./utils/func');
 const app = express();
 
@@ -26,6 +26,8 @@ app.use((req, res, next) => {
     // Pass to next layer of middleware
     next();
 });
+
+app.use(express.json());
 
 /*
 TODO:
@@ -63,6 +65,25 @@ app.get('/zones', (req, res) => {
     let isResidency = req.query.isResidency === "true" ? true : false;
     try {
         return res.json(filterZones(nestZones(getDbData("zones")), isMobility, isResidency))
+    } catch (error) {
+        return res.status(400).json({ error: error.toString() })
+    }
+})
+
+app.put('/zones/:id', (req, res) => {
+    const zoneId = req.params.id;
+    const updatedData = req.body;
+    const editedFields = Object.keys(updatedData);
+    let sanitizedEditedData = {};
+    if (editedFields.includes("isMobility")) {
+        sanitizedEditedData.isMobility = updatedData.isMobility
+    }
+    if (editedFields.includes("isResidency")) {
+        sanitizedEditedData.isResidency = updatedData.isResidency
+    }
+    try {
+        editDBDataById("zones", zoneId, sanitizedEditedData)
+        return res.json(filterZones(nestZones(getDbData("zones")), false, false))
     } catch (error) {
         return res.status(400).json({ error: error.toString() })
     }
