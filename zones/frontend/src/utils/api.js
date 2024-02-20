@@ -17,3 +17,7 @@ export const getZones = (isMobility, isResidency) => {
 export const editZone = (id, data) => {
   return axios.put(`${API_URL}/zones/${id}`, data);
 };
+
+export const createZone = (data) => {
+  return axios.post(`${API_URL}/zones/`, data);
+};

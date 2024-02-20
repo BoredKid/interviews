@@ -6,6 +6,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import Candidates from './pages/CandidatesPage';
 import EditCandidate from './pages/EditCandidatePage';
 import Zones from './pages/ZonesPage';
+import CreateZone from './pages/CreateZonePage';
 
 const App: React.FC = () => {
   return (
@@ -35,6 +36,9 @@ const Sidebar = () => {
       <Link to="/zones">
         <p>Zones</p>
       </Link>
+      <Link to="/zones/add">
+        <p>Create Zone</p>
+      </Link>
     </>
   );
 };
@@ -45,6 +49,7 @@ const MainContent = () => {
       <Route path="/" Component={Candidates} />
       <Route path="/candidate/:id" Component={EditCandidate} />
       <Route path="/zones" Component={Zones} />
+      <Route path="/zones/add" Component={CreateZone} />
     </Routes>
   );
 };
