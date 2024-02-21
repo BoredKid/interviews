@@ -1,1 +1,44 @@
-[{"id":"356","name":"Région Bruxelles Capitale","isResidency":true,"isMobility":false,"parent":"355"},{"id":"360","name":"Bruxelles","isResidency":true,"isMobility":false,"parent":"356"},{"id":"358","name":"Liege","isResidency":false,"isMobility":false,"parent":"355"},{"id":"359","name":"Paris","isResidency":false,"isMobility":true,"parent":"357"},{"id":"355","name":"Belgium","isResidency":false,"isMobility":false,"parent":null},{"id":"357","name":"France","isResidency":false,"isMobility":false,"parent":null}]
+[
+    {
+        "id": "356",
+        "name": "Région Bruxelles Capitale",
+        "isResidency": true,
+        "isMobility": false,
+        "parent": "355"
+    },
+    {
+        "id": "360",
+        "name": "Bruxelles",
+        "isResidency": true,
+        "isMobility": false,
+        "parent": "356"
+    },
+    {
+        "id": "358",
+        "name": "Liege",
+        "isResidency": false,
+        "isMobility": false,
+        "parent": "355"
+    },
+    {
+        "id": "359",
+        "name": "Paris",
+        "isResidency": false,
+        "isMobility": true,
+        "parent": "357"
+    },
+    {
+        "id": "355",
+        "name": "Belgium",
+        "isResidency": false,
+        "isMobility": false,
+        "parent": null
+    },
+    {
+        "id": "357",
+        "name": "France",
+        "isResidency": false,
+        "isMobility": false,
+        "parent": null
+    }
+]

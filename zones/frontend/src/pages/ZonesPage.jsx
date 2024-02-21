@@ -52,7 +52,7 @@ const ZoneHeaders = (props) => {
       <Table.Row>
         <Table.HeaderCell style={{ textDecoration: 'underline' }}>Name</Table.HeaderCell>
         <Table.HeaderCell style={{ textDecoration: 'underline' }} textAlign="center">
-          Job Area & Mobility
+          Mobility
         </Table.HeaderCell>
         <Table.HeaderCell style={{ textDecoration: 'underline' }} textAlign="center">
           Residency
