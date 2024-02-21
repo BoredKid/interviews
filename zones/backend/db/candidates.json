@@ -1,12 +1,16 @@
 [
     {
-        "id":"1",
-        "lastname":"Cisse",
-        "firstname":"6C"
+        "id": "1",
+        "lastname": "Cisse",
+        "firstname": "6C",
+        "mobilities": [],
+        "residency": null
     },
     {
-        "id":"2",
-        "lastname":"Chloé",
-        "firstname":"Chlo"
+        "id": "2",
+        "lastname": "Chloé",
+        "firstname": "Chlo",
+        "mobilities": [],
+        "residency": null
     }
 ]
