@@ -2,7 +2,7 @@
 
 // index.js
 const express = require('express');
-const { getDbData, getDbDataById, editDBDataById } = require('./utils/dbFunc');
+const { getDbData, getDbDataById, editDBDataById, insertDbData } = require('./utils/dbFunc');
 const { nestZones, filterZones } = require('./utils/func');
 const app = express();
 
@@ -89,36 +89,26 @@ app.put('/zones/:id', (req, res) => {
     }
 })
 
-// app.post('/upload-sourcing-campus', upload.fields([{ name: 'profile', maxCount: 1 }, { name: 'cv', maxCount: 1 }]), (req, res) => {
-//     console.log(req.files)
-//     if (!req.files && req.files.length > 1) {
-//         return res.status(400).json({ error: 'No file uploaded' });
-//     }
-//     // la route prend aussi un body avec un champs data qui permet d'envoyer un mail de validation 
-//     // (moyennant un email, un lastName et un firstName)
-//     if (req.body && req.body.data) {
-//         const data = JSON.parse(req.body.data);
-//         sendConfirmationMail(data);
-//     }
-//     res.json({ message: 'File uploaded successfully' });
-// });
+
+app.post('/zones', (req, res) => {
+    try {
+        const newZone = req.body;
+        let sanitizedNewZone = {};
+        const NEW_ZONE_FIELDS = ["name", "isResidency", "isMobility", "parent"];
+        for (key of NEW_ZONE_FIELDS) {
+            if (!Object.keys(newZone).includes(key)) {
+                throw new Error(`Field ${key} is missing`)
+            }
+            sanitizedNewZone[key] = newZone[key]
+        }
 
 
-
-// // allow to get mobilities or residencies for forms
-// app.get('/zones', function (req, res) {
-//     const zoneType = req.query.zoneType;
-//     if (!zoneType || (zoneType !== "mobility" && zoneType !== "residency")) {
-//         return res.status(400).json({ error: 'No zone type or wrong zone type' });
-//     }
-//     if (zoneType === "mobility" && !!mobilitiesJsonFile) {
-//         return res.json(mobilitiesJsonFile)
-//     }
-//     if (zoneType === "residency" && !!residencyJsonFile) {
-//         return res.json(residencyJsonFile)
-//     }
-//     return res.status(404).send("The data you're looking for is not there... Please contact itsupport@creamconsulting.com")
-// })
+        insertDbData("zones", sanitizedNewZone)
+        return res.json(filterZones(nestZones(getDbData("zones")), false, false))
+    } catch (error) {
+        return res.status(400).json({ error: error.toString() })
+    }
+})
 
 app.get('*', function (req, res) {
     return res.status(404).json({ error: 'Route does not exists' });

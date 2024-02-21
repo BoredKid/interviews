@@ -42,7 +42,7 @@ const editDBDataById = (name, id, newData) => {
         if (!element) throw new Error(`Element ${id} don't exists in db ${name}`)
         else {
             const newElement = { ...element, ...newData };
-            const newDbData = dbData.reduce((newDataArray, element) => element.id !== id ? [...newDataArray, element] : [...newDataArray, newElement], [])//[...dbData.reduce(val => val.id !== id), newElement];
+            const newDbData = dbData.reduce((newDataArray, element) => element.id !== id ? [...newDataArray, element] : [...newDataArray, newElement], [])
             writeDbData(name, newDbData)
             return element;
         }
@@ -51,8 +51,33 @@ const editDBDataById = (name, id, newData) => {
         throw err;
     }
 }
+
+// generated via chatgpt
+function generateUniqueId() {
+    // Generate a random component
+    const randomPart = Math.random().toString(36).substring(2, 8);
+
+    // Combine timestamp and random part
+    const uniqueId = Date.now().toString(36) + randomPart;
+
+    return uniqueId;
+}
+
+
+const insertDbData = (name, newData) => {
+    try {
+        const dbData = getDbData(name);
+
+        const newElement = { ...newData, id: generateUniqueId() };
+        const newDbData = [...dbData, newElement]
+        writeDbData(name, newDbData)
+    } catch (err) {
+        throw err;
+    }
+}
 module.exports = {
     getDbData,
     getDbDataById,
-    editDBDataById
+    editDBDataById,
+    insertDbData
 }

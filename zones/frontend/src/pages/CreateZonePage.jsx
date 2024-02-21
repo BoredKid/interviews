@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import { Form, Button } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 import { createZone } from '../utils/api';
 import DropdownZones from '../components/DropdownZones';
 
 const CreateZone = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     isResidency: false,
     isMobility: false,
@@ -19,7 +21,7 @@ const CreateZone = () => {
       setFormData({ ...formData, [field]: value });
 
   return (
-    <Form onSubmit={() => createZone(formData)}>
+    <Form onSubmit={() => createZone(formData).then(() => navigate('/zones'))}>
       <Form.Group widths="equal">
         <Form.Input placeholder="Name" label="Zone Name" required onChange={onChangeFormField('name')} />
       </Form.Group>
@@ -33,8 +35,8 @@ const CreateZone = () => {
         <Form.Checkbox
           label="Mobility"
           value={true}
-          checked={formData?.isResidency}
-          onChange={() => onChangeFormField('isResidency')(null, { value: !formData?.isResidency })}
+          checked={formData?.isMobility}
+          onChange={() => onChangeFormField('isMobility')(null, { value: !formData?.isMobility })}
         />
       </Form.Group>
       <Form.Group widths="equal">
