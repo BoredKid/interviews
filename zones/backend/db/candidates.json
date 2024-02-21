@@ -4,13 +4,15 @@
         "lastname": "Cisse",
         "firstname": "6C",
         "mobilities": [],
-        "residency": null
+        "residency": "360"
     },
     {
         "id": "2",
         "lastname": "Chloé",
         "firstname": "Chlo",
-        "mobilities": [],
-        "residency": null
+        "mobilities": [
+            "359"
+        ],
+        "residency": "356"
     }
 ]
