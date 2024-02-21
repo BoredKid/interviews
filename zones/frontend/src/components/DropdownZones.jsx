@@ -34,7 +34,7 @@ const DropdownZones = ({ placeholder, multiple, onChange, mobility, residency })
     });
   }, []);
 
-  const options = formatZonesValues(zones, 0);
+  const options = [{ text: '', value: null }].concat(formatZonesValues(zones, 0));
 
   return (
     <Dropdown
