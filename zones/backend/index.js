@@ -45,6 +45,7 @@ app.get('/ping', (req, res) => {
 
 app.get('/candidates', (req, res) => {
     try {
+        const rawCandidates = getDbData("candidates");
         return res.json(getDbData("candidates"))
     } catch (error) {
         return res.status(400).json({ error: error.toString() })

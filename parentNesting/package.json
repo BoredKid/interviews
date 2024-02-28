@@ -1,0 +1,14 @@
+{
+    "name": "parent-nesting",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^27.0.6"
+    },
+    "dependencies": {
+        "fs": "^0.0.1-security"
+    }
+}
